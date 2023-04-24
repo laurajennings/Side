@@ -1,0 +1,12 @@
+.pageContainer {
+    padding: 32px 0;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+  }
+.link:hover {
+    background-color: grey;
+    color: white;
+}
