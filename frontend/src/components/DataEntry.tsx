@@ -15,7 +15,7 @@ interface DataEntryProps {
 const DataEntry = ({dataEntry, onDataEntryClicked, onDeleteDataEntryClicked, className}: DataEntryProps) => {
     const {
         overallFeeling,
-        pillTaken,
+        medications,
         waterIntake,
         sleep,
         createdAt,
@@ -39,7 +39,13 @@ let createdAtText = formatDate(createdAt);
                     />
                 </Card.Title>
                 <Card.Text className={styles.cardText}>{overallFeeling}</Card.Text>
-                <Card.Text className={styles.cardText}>{pillTaken}</Card.Text>
+                <Card.Text className={styles.cardText}>
+                    {medications && medications.map((medication, index) => (
+                        <div key={index}>
+                            {medication.name} - {medication.dose}
+                        </div>
+                    ))}
+                </Card.Text>
                 <Card.Text className={styles.cardText}>{waterIntake}</Card.Text>
                 <Card.Text className={styles.cardText}>{sleep}</Card.Text>
             </Card.Body>

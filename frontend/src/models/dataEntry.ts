@@ -1,7 +1,12 @@
+interface Medication {
+    name: string,
+    dose: number,
+}
+
 export interface DataEntry {
     _id: string,
     overallFeeling?: number,
-    pillTaken?: string,
+    medications?: Medication[],
     waterIntake?: number,
     sleep?: number,
     createdAt: string,

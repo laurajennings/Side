@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap";
 import { User } from "../models/user";
-import EntriesPage from "../components/EntriesPage";
+import EntriesPage from "./EntriesPage";
 import LoggedOutPage from "../components/LoggedOutPage";
 import styles from "../styles/DataEntriesPage.module.css";
 

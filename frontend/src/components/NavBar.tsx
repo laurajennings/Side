@@ -14,7 +14,7 @@ interface NavBarProps {
     onLogoutSuccessful: () => void,
   }
 
-const LoggedInOptions = ['Dashboard', 'Logout'];
+const LoggedInOptions = ['Dashboard', 'Entries', 'Logout'];
 const LoggedOutOptions = ['Login', 'Register'];
   
 const NavBar = ({

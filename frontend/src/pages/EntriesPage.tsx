@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Row, Spinner } from "react-bootstrap";
 import { DataEntry as DataEntryModel } from "../models/dataEntry";
 import * as DataEntriesApi from "../network/dataEntries_api";
-import AddEditDataEntryDialog from "./AddEditDataEntryDialog";
-import DataEntry from "./DataEntry";
+import DataEntry from "../components/DataEntry";
 import styles from "../styles/DataEntriesPage.module.css";
 import styleUtils from "../styles/utils.module.css";
 
@@ -74,16 +73,16 @@ const EntriesPage = () => {
         :<p>You don't have any entries yet.</p>
       }
       </>}
-      {showAddDataEntryDialog && 
+      {/* showAddDataEntryDialog && 
         <AddEditDataEntryDialog
           onDismiss={() => setShowAddDataEntryDialog(false)}
           onDataEntrySaved={(newDataEntry) => {
             setDataEntries([...dataEntries, newDataEntry]);
             setShowAddDataEntryDialog(false);
           }}
-        />
+        /> */
       }
-      {dataEntryToEdit &&
+      {/* dataEntryToEdit &&
       <AddEditDataEntryDialog
       dataEntryToEdit={dataEntryToEdit}
       onDismiss={() => setDataEntryToEdit(null)}
@@ -91,7 +90,7 @@ const EntriesPage = () => {
         setDataEntries(dataEntries.map(existingDataEntry => existingDataEntry._id === updatedDataEntry._id ? updatedDataEntry : existingDataEntry));
         setDataEntryToEdit(null);
       }}
-      />
+      /> */
     }
         </>
     )

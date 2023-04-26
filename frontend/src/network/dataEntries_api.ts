@@ -69,14 +69,16 @@ export async function fetchDataEntries(): Promise<DataEntry[]> {
     return response.json();
 }
 
+
+
 export interface DataEntryInput {
     overallFeeling: number,
-    pillTaken: string,
+    medications: {
+            name: string,
+            dose: string,
+    }[],
     waterIntake: number,
-    foodIntake: string,
     sleep: number,
-    positiveEffects: string,
-    negativeEffects: string,
 }
 
 export async function createDataEntry(dataEntry: DataEntryInput): Promise<DataEntry> {

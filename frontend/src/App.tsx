@@ -11,6 +11,7 @@ import NotFoundPage from './pages/NotFountPage';
 import RegisterPage from './pages/RegisterPage';
 import styles from "./styles/App.module.css";
 import { themeSettings } from './theme';
+import EntriesPage from './pages/EntriesPage';
 
 
 function App() {
@@ -44,6 +45,10 @@ function App() {
             <Route 
               path='/dashboard'
               element={<DashboardPage loggedInUser={loggedInUser} />}
+            />
+            <Route 
+              path='/entries'
+              element={<EntriesPage />}
             />
             <Route 
               path='/login'
