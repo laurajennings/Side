@@ -17,11 +17,12 @@ interface DataEntryBoxProps {
 const DataEntryModal = ({ onDismiss, onDataEntrySaved }: DataEntryBoxProps) => {
 
     const [showAddDataEntryDialog, setShowAddDataEntryDialog] = useState(false);
-    const {control, register, handleSubmit, formState: {errors, isSubmitting}} = useForm<DataEntryInput>();
+    const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<DataEntryInput>();
     const [errorText, setErrorText] = useState<string | null>(null);
 
     async function onSubmit(input: DataEntryInput) {
         console.log('submitting: ', input);
+        console.log('med names: ', input.medications.map(med => med.name));
         try {
             const newDataEntry = await DataEntriesApi.createDataEntry(input);
             onDataEntrySaved(newDataEntry);
@@ -36,9 +37,19 @@ const DataEntryModal = ({ onDismiss, onDataEntrySaved }: DataEntryBoxProps) => {
     ])
     const [newRadioLabel, setNewRadioLabel] = useState('');
 
-    const handleRadioChange = (index: number) => {
-        const newRadios = [...radios];
-        newRadios[index].checked = !newRadios[index].checked;
+    const handleRadioChange = (index: number, label: string) => {
+        const newRadios = radios.map((radio, i) => {
+            if (i === index) {
+                console.log(radio)
+                return {
+                    ...radio,
+                    checked: !radio.checked,
+                    label: label
+                };
+            } else {
+                return radio;
+            }
+        });
         console.log(newRadios);
         setRadios(newRadios);
     };
@@ -97,25 +108,15 @@ const DataEntryModal = ({ onDismiss, onDataEntrySaved }: DataEntryBoxProps) => {
                             </Typography>
                             <FormGroup>
                                 {radios.map((radio, index) => (
-                                    
                                     <div key={index} >
                                         <FormControlLabel
                                             control={
-                                            <Controller
-                                                
-                                                name={`medications.${index}.name`}
-                                                render={({ field }) => (
-                                                    <Checkbox
-                                                        {...field}
-                                                        checked={radio.checked}
-                                                        onChange={() => handleRadioChange(index)}
-                                                        value={radio.label}
-                                                    />
-                                            
-                                                )}
-                                                
-                                                control={control}
-                                            /> 
+                                                <Checkbox
+                                                    {...register(`medications.${index}.name`)}
+                                                    checked={radio.checked}
+                                                    onChange={() => handleRadioChange(index, radio.label)}
+                                                    value={radio.label}
+                                                />
                                             }
                                             label={radio.label}
                                         />
